@@ -31,13 +31,13 @@ router.route('/:id').delete((req, res) => {
         .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
-router.route('update/:id').post((req, res) => {
+router.route('/update/:id').post((req, res) => {
     Flight.findById(req.params.id)
         .then((flight) => {
-            flight.flight_number = req.body.flight_number;
-            flight.airline = req.body.airline;
-            flight.departure_city = req.body.departure_city;
-            flight.arrival_city = req.body.arrival_city;
+            flight.flight_number = req.body.flight_number || flight.flight_number;
+            flight.airline = req.body.airline || flight.airline;
+            flight.departure_city = req.body.departure_city || flight.departure_city;
+            flight.arrival_city = req.body.arrival_city || flight.arrival_city;
 
             flight.save()
                 .then(() => res.json('Flight updated!'))
