@@ -22,10 +22,12 @@ connection.once('open', () => {
 const flightsRouter = require('./routes/flights');
 const usersRouter = require('./routes/users');
 const transitsRouter = require('./routes/transits');
+const accommodationRouter = require('./routes/accommodations');
 
 app.use('/flights', flightsRouter);
 app.use('/users', usersRouter);
 app.use('/transits', transitsRouter);
+app.use('/accommodations', accommodationRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
