@@ -35,9 +35,9 @@ router.route('/update/:id').post((req, res) => {
     Accommodation.findById(req.params.id)
         .then((accommodation) => {
             accommodation.type = req.body.type || accommodation.type;
-            accommodation.excess_seats = req.body.excess_seats || accommodation.excess_seats;
-            accommodation.departure_day = req.body.departure_day || accommodation.departure_day;
-            accommodation.arrival_day = req.body.arrival_day || accommodation.arrival_day;
+            accommodation.excess_beds = req.body.excess_beds || accommodation.excess_beds;
+            accommodation.checkin_day = req.body.checkin_day || accommodation.checkin_day;
+            accommodation.checkout_day = req.body.checkout_day || accommodation.checkout_day;
             accommodation.notes = req.body.notes || accommodation.notes;
 
             accommodation.save()
