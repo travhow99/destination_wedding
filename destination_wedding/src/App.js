@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Navbar from './components/navbar.component.js'
+import Welcome from './components/welcome.component.js'
 import FlightList from './components/flight-list.component'
 import EditFlight from './components/edit-flight.component'
 import CreateFlight from './components/create-flight.component'
@@ -13,7 +14,8 @@ function App() {
 		<Router>
 			<Navbar />
 			<br />
-			<Route path="/" exact component={FlightList} />
+			<Route path="/" exact component={Welcome} />
+			<Route path="/flights" component={FlightList} />
 			<Route path="/edit/:id" component={EditFlight} />
 			<Route path="/create" component={CreateFlight} />
 			<Route path="/user" component={CreateUser} />

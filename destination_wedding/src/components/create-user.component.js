@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Autosuggest from 'react-autosuggest';
 
 export default class CreateUser extends Component {
     constructor(props) {
@@ -8,6 +9,7 @@ export default class CreateUser extends Component {
         this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePhoneNumber = this.onChangePhoneNumber.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             first_name: '',
@@ -22,7 +24,8 @@ export default class CreateUser extends Component {
         this.setState({
             users: ['test user'],
             first_name: 'Test',
-        })
+        });
+        console.log(this.state);
     }
 
     onChangeFirstName(e) {
@@ -67,18 +70,34 @@ export default class CreateUser extends Component {
     render() {
         return (
             <div>
-                <form action="" method="POST" role="form">
-                    <legend>Form title</legend>
-                
+                <form onSubmit={this.onSubmit}>
+                    <h3>Welcome!</h3>
+                    <p>Who are you exactly?</p>
+
                     <div className="form-group">
-                        <label htmlFor="">label</label>
-                        <input type="text" className="form-control" id="" placeholder="Input field" />
+                        <label>Your Name</label>
+                        
+                        <select ref="userInput"
+                            required
+                            className="form-control"
+                            value={this.state.email}
+                            onChange={this.onChangeFirstName}>
+                            {
+                                this.state.users.map((user) => {
+                                    return <option
+                                        key={user}
+                                        value={user}>{user}
+                                        </option>;
+                                })
+                            }
+                        </select>
                     </div>
                 
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    </div>
                 </form>
                 
-                <p>Let's create a user!</p>
             </div>
         )
     }
