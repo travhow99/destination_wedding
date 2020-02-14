@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import logo from '../mountains.png';
 import Cookies from 'universal-cookie';
+import { Redirect } from 'react-router-dom';
 
 const cookies = new Cookies();
+let expires = new Date();
+expires.setDate(expires.getDate() + 7);
+
 
 export default class Welcome extends Component {
     constructor(props) {
@@ -10,6 +14,8 @@ export default class Welcome extends Component {
 
         this.onChangeInput = this.onChangeInput.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onSubmitName = this.onSubmitName.bind(this);
 
         this.state = {
             entry_key: 'fake_entry',
@@ -22,14 +28,32 @@ export default class Welcome extends Component {
 
     componentDidMount() {
         console.log(this.state);
+        console.log(cookies.getAll());
+
+        if (cookies.get('name') && cookies.get('attendee')) {
+            window.location = '/user';
+        }
 
         if (cookies.get('attendee')) {
-            // alert("Welcome!");
             this.setState({
                 attendee: true,
             })
         }
 
+    }
+
+    componentDidUpdate() {
+        console.log('upate');
+        console.log(this.state);
+
+        if (this.state.name) {
+            cookies.set('name', true, { 
+                path: '/',
+                expires: expires,
+            });
+
+            window.location = '/user';
+        }
     }
 
     onChangeInput(e) {
@@ -48,9 +72,6 @@ export default class Welcome extends Component {
         e.preventDefault();
 
         if (this.state.user_entry === this.state.entry_key) {
-            var expires = new Date();
-            expires.setDate(expires.getDate() + 7);
-
             cookies.set('attendee', true, { 
                 path: '/',
                 expires: expires,
@@ -101,7 +122,7 @@ export default class Welcome extends Component {
                                 className="" />
                         </div>
                         <div className="form-group">
-                            <button type="submit" className="btn btn-primary">test</button>
+                            <button type="submit" className="btn btn-primary">Submit</button>
                         </div>
                     </form>
                     )
