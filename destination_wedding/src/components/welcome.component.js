@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../mountains.png';
 import Cookies from 'universal-cookie';
-import { Redirect } from 'react-router-dom';
 
 const cookies = new Cookies();
 let expires = new Date();
@@ -43,11 +42,8 @@ export default class Welcome extends Component {
     }
 
     componentDidUpdate() {
-        console.log('upate');
-        console.log(this.state);
-
         if (this.state.name) {
-            cookies.set('name', true, { 
+            cookies.set('name', this.state.name, { 
                 path: '/',
                 expires: expires,
             });
