@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
 import Cookies from 'universal-cookie';
+import axios from 'axios';
 
 const cookies = new Cookies();
 let expires = new Date();
@@ -74,7 +75,10 @@ export default class CreateUser extends Component {
 
         console.log(user);
 
-        window.location = '/';
+        axios.post('http://localhost:5000/users/add', user)
+            .then((res) => console.log(res.data));
+
+        // window.location = '/';
     }
 
     componentDidUpdate() {
@@ -97,7 +101,7 @@ export default class CreateUser extends Component {
                         <input 
                             type="text"
                             onChange={this.onChangeFirstName} 
-                            className="form-control" />
+                            className="form-control" value={this.state.first_name} />
                     </div>
 
                     <div className="form-group">
@@ -105,7 +109,7 @@ export default class CreateUser extends Component {
                         <input 
                             type="text"
                             onChange={this.onChangeLastName} 
-                            className="form-control" />
+                            className="form-control" value={this.state.last_name} />
                     </div>
 
                     <div className="form-group">
