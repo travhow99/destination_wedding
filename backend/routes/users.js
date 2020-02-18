@@ -10,11 +10,33 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
     const user = req.body;
 
-    const newUser = new User(user);
+    const pastUser = User.findOne({email: req.body.email}, function(err, docs) {
+        // console.log(err, docs);
+    })
 
-    newUser.save()
-        .then(() => res.json('User added!'))
-        .catch((err) => res.status(400).json(`Error: ${err}`));
+    // console.log(pastUser.exec());
+    pastUser.exec(function (err, pUser) {
+        if (err) return handleError(err);
+
+        console.log(pUser);
+        if (pUser) {
+            console.log('shit!');
+
+            const data = {
+                status: 'error',
+                message: 'This user already exists!',
+            }
+            res.json(data);
+        } else {
+            console.log('no user found');
+
+            const newUser = new User(user);
+
+            newUser.save()
+                .then(() => res.json('User added!'))
+                .catch((err) => res.status(400).json(`Error: ${err}`));
+        }
+      })      
 });
 
 module.exports = router;
