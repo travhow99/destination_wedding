@@ -1,129 +1,128 @@
 import React, { Component } from 'react';
-import logo from '../mountains.png';
+import UserAutosuggest from './user-auto-suggest.component';
 import Cookies from 'universal-cookie';
+import axios from 'axios';
 
 const cookies = new Cookies();
 let expires = new Date();
 expires.setDate(expires.getDate() + 7);
 
+let name = cookies.get('name');
 
-export default class Welcome extends Component {
+export default class CreateUser extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeInput = this.onChangeInput.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        this.onChangeName = this.onChangeName.bind(this);
-        this.onSubmitName = this.onSubmitName.bind(this);
 
         this.state = {
-            entry_key: 'fake_entry',
-            user_entry: '',
-            attendee: false,
-            name: '',
-            name_input: '',
+            first_name: name ? name.split(' ')[0] : '',
+            last_name: name ? name.split(' ')[1] : '',
+            email: '',
+            users: [],
+            error: false,
         }
     }
 
     componentDidMount() {
         console.log(this.state);
         console.log(cookies.getAll());
-
-        if (cookies.get('name') && cookies.get('attendee')) {
-            window.location = '/user';
-        }
-
-        if (cookies.get('attendee')) {
-            this.setState({
-                attendee: true,
-            })
-        }
-
-    }
-
-    componentDidUpdate() {
-        if (this.state.name) {
-            cookies.set('name', this.state.name, { 
-                path: '/',
-                expires: expires,
-            });
-
-            window.location = '/user';
-        }
-    }
-
-    onChangeInput(e) {
+    
         this.setState({
-            user_entry: e.target.value,
-        })
+            users: ['test user'],
+            first_name: 'Test',
+        });
+        console.log(this.state);
     }
 
-    onChangeName(e) {
+    onChangeEmail(e) {
         this.setState({
-            name_input: e.target.value,
+            email: e.target.value,
         })
     }
 
     onSubmit(e) {
         e.preventDefault();
 
-        if (this.state.user_entry === this.state.entry_key) {
-            cookies.set('attendee', true, { 
-                path: '/',
-                expires: expires,
-            });
-
-            this.setState({
-                attendee: true,
-            });
-        } else {
-            // Show Error Message
+        const user = {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            email: this.state.email,
         }
+
+        console.log(user);
+
+        axios.post('http://localhost:5000/users/add', user)
+            .then((res) => {
+                const data = res.data;
+                if (data.status === 'error') {
+                    this.setState({
+                        error: 'This user already exists!',
+                    });
+                }
+            })
+            .catch((err) => console.log(err));
     }
 
-    onSubmitName(e) {
-        e.preventDefault();
-
-        this.setState({
-            name: this.state.name_input,
-        })
+    componentDidUpdate() {
+        console.log(this.state);
     }
 
     render() {
-        return(
-            <div style={{textAlign: "center"}}>
-                <img src={logo} style={{maxWidth: "50%"}} />
-                <h1>Welcome!</h1>
-                <p>Enter the sign in code below:</p>
+        if (!cookies.get('name')) {
+            window.location = '/';
+        }
 
-                { !this.state.attendee ? (
-                    <form onSubmit={this.onSubmit}>
-                        <div className="form-group">
-                            <input 
-                                onChange={this.onChangeInput} 
-                                className="" />
-                        </div>
-                        <div className="form-group">
-                            <button type="submit" className="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                    ) : (
-                    <form onSubmit={this.onSubmitName}>
-                        <div className="form-group">
-                            
-                            <label>Your Name:</label>
-                            
-                            <input 
-                                onChange={this.onChangeName} 
-                                className="" />
-                        </div>
-                        <div className="form-group">
-                            <button type="submit" className="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                    )
-                }
+        return (
+            <div>
+                
+                <form onSubmit={this.onSubmit}>
+                    <h3>Welcome!</h3>
+                    <p>Let's get a few of your details.</p>
 
+
+                    <div className="form-group">
+                        <label htmlFor="email">Email address</label>
+                        <UserAutosuggest />
+                        {/* <input 
+                            type="email"
+                            onChange={this.onChangeEmail} 
+                            className="form-control"
+                            required /> */}
+                    </div>
+
+                    {/* <div className="form-group">
+                        <label>Your Name</label>
+                        
+                        <select ref="userInput"
+                            required
+                            className="form-control"
+                            value={this.state.email}
+                            onChange={this.onChangeFirstName}>
+                            {
+                                this.state.users.map((user) => {
+                                    return <option
+                                        key={user}
+                                        value={user}>{user}
+                                        </option>;
+                                })
+                            }
+                        </select>
+                    </div> */}
+                    {this.state.error && 
+                        <div className="form-group">
+                            <div className="alert alert-danger" role="alert">
+                                {this.state.error} <a href="../">Log in</a> instead?
+                            </div>
+                        </div>
+                    }
+                
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+                
             </div>
         )
     }

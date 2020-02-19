@@ -25,6 +25,7 @@ export default class CreateUser extends Component {
             email: '',
             phone_number: '',
             users: [],
+            error: false,
         }
     }
 
@@ -79,12 +80,12 @@ export default class CreateUser extends Component {
             .then((res) => {
                 const data = res.data;
                 if (data.status === 'error') {
-                    alert('no go')
+                    this.setState({
+                        error: 'This user already exists!',
+                    });
                 }
             })
             .catch((err) => console.log(err));
-
-        // window.location = '/';
     }
 
     componentDidUpdate() {
@@ -103,35 +104,40 @@ export default class CreateUser extends Component {
                     <p>Let's get a few of your details.</p>
 
                     <div className="form-group">
-                            <label htmlFor="firstName">First name</label>
+                        <label htmlFor="firstName">First name</label>
                         <input 
                             type="text"
                             onChange={this.onChangeFirstName} 
-                            className="form-control" value={this.state.first_name} />
+                            className="form-control"
+                            value={this.state.first_name}
+                            required />
                     </div>
 
                     <div className="form-group">
-                            <label htmlFor="lastName">Last name</label>
+                        <label htmlFor="lastName">Last name</label>
                         <input 
                             type="text"
                             onChange={this.onChangeLastName} 
-                            className="form-control" value={this.state.last_name} />
+                            className="form-control"
+                            required value={this.state.last_name} />
                     </div>
 
                     <div className="form-group">
-                            <label htmlFor="email">Email address</label>
+                        <label htmlFor="email">Email address</label>
                         <input 
                             type="email"
                             onChange={this.onChangeEmail} 
-                            className="form-control" />
+                            className="form-control"
+                            required />
                     </div>
 
                     <div className="form-group">
-                            <label htmlFor="phoneNumber">Phone number</label>
+                        <label htmlFor="phoneNumber">Phone number</label>
                         <input 
                             type="tel"
                             onChange={this.onChangePhoneNumber} 
-                            className="form-control" />
+                            className="form-control"
+                            required />
                     </div>
 
                     {/* <div className="form-group">
@@ -152,6 +158,13 @@ export default class CreateUser extends Component {
                             }
                         </select>
                     </div> */}
+                    {this.state.error && 
+                        <div className="form-group">
+                            <div className="alert alert-danger" role="alert">
+                                {this.state.error} <a href="../welcome">Log in</a> instead?
+                            </div>
+                        </div>
+                    }
                 
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary">Submit</button>

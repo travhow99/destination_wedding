@@ -14,14 +14,10 @@ router.route('/add').post((req, res) => {
         // console.log(err, docs);
     })
 
-    // console.log(pastUser.exec());
     pastUser.exec(function (err, pUser) {
         if (err) return handleError(err);
 
-        console.log(pUser);
         if (pUser) {
-            console.log('shit!');
-
             const data = {
                 status: 'error',
                 message: 'This user already exists!',
