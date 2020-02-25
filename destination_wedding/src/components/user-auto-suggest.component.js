@@ -10,7 +10,9 @@ const getSuggestionValue = (suggestion) => suggestion.first_name;
 // Use your imagination to render suggestions.
 const renderSuggestion = (suggestion) => (
     <div>
-        {suggestion.first_name}
+        {suggestion.first_name} {suggestion.last_name}
+        <br />
+        <small>{suggestion.email}</small>
     </div>
 );
 

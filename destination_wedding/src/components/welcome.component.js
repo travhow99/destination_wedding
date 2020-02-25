@@ -31,7 +31,7 @@ export default class CreateUser extends Component {
     
         this.setState({
             users: ['test user'],
-            first_name: 'Test',
+            first_name: cookies.get('first_name'),
         });
         console.log(this.state);
     }
