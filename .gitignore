@@ -7,7 +7,7 @@ yarn-error.log*
 
 node_modules
 npm-debug.log
-.env
+backend/.env
 .DS_Store
 scripts/flow/*/.flowconfig
 *~

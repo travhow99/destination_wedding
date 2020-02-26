@@ -28,12 +28,6 @@ export default class CreateUser extends Component {
     componentDidMount() {
         console.log(this.state);
         console.log(cookies.getAll());
-    
-        this.setState({
-            users: ['test user'],
-            first_name: cookies.get('first_name'),
-        });
-        console.log(this.state);
     }
 
     onChangeEmail(e) {
@@ -60,6 +54,8 @@ export default class CreateUser extends Component {
                     this.setState({
                         error: 'This user already exists!',
                     });
+                } else {
+                    
                 }
             })
             .catch((err) => console.log(err));

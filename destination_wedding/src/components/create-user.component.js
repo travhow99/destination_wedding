@@ -79,6 +79,8 @@ export default class CreateUser extends Component {
                     this.setState({
                         error: 'This user already exists!',
                     });
+                } else {
+                    cookies.set('email', this.state.email);
                 }
             })
             .catch((err) => console.log(err));

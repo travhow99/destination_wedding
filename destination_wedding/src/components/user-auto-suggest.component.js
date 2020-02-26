@@ -5,7 +5,7 @@ import axios from 'axios';
 // When suggestion is clicked, Autosuggest needs to populate the input
 // based on the clicked suggestion. Teach Autosuggest how to calculate the
 // input value for every given suggestion.
-const getSuggestionValue = (suggestion) => suggestion.first_name;
+const getSuggestionValue = (suggestion) => suggestion.first_name + ' ' + suggestion.last_name;
 
 // Use your imagination to render suggestions.
 const renderSuggestion = (suggestion) => (
