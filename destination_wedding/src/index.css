@@ -12,6 +12,30 @@ code {
     monospace;
 }
 
+.navbar.bg-dark {
+  background-color: #363833!important;
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    padding: 1.5rem 1rem!important;
+  }
+
+  .navbar-brand.abs {
+    position: absolute;
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin: 0;
+  }
+}  
+
+#main, #main .col {
+  min-height: 340px;
+}
+
 .react-autosuggest__input {
   display: block;
   width: 100%;

@@ -80,7 +80,10 @@ export default class CreateUser extends Component {
                         error: 'This user already exists!',
                     });
                 } else {
-                    cookies.set('email', this.state.email);
+                    cookies.set('email', this.state.email, {
+                        path: '/',
+                        expires: expires,        
+                    });
                 }
             })
             .catch((err) => console.log(err));

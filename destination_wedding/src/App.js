@@ -28,14 +28,17 @@ function App() {
 	return (
 		<Router>
 			<Navbar />
-			<br />
-			<Route path="/" exact component={Entry} />
-			<Route path="/welcome" exact component={Welcome} />
-			<Route path="/flights" component={FlightList} />
-			<Route path="/edit/:id" component={EditFlight} />
-			<Route path="/create" component={CreateFlight} />
-			<Route path="/user" component={CreateUser} />
-			<Route path="/test" component={UserAutosuggest} />
+			<div id="main">
+				<div className="container-fluid">
+					<Route path="/" exact component={Entry} />
+					<Route path="/welcome" exact component={Welcome} />
+					<Route path="/flights" component={FlightList} />
+					<Route path="/edit/:id" component={EditFlight} />
+					<Route path="/create" component={CreateFlight} />
+					<Route path="/user" component={CreateUser} />
+					<Route path="/test" component={UserAutosuggest} />
+				</div>
+			</div>
 		</Router>
 	);
 }
