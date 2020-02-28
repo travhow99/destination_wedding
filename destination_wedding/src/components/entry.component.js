@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../mountains.png';
+import logo from '../mountain.png';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
