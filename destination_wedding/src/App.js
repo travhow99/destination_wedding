@@ -14,10 +14,11 @@ import UserAutosuggest from './components/user-auto-suggest.component';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
+// var is_root = location.pathname == "/";
 
 console.log(process.env.REACT_APP_HOST, window.location.href);
 
-if (!cookies.get('email') && window.location.href !== process.env.REACT_APP_HOST) {
+if (!cookies.get('email') && (window.location.pathname !== "/" && window.location.pathname !== "/user")) {
 	console.log('not found');
 	window.location = '/';
 } else {

@@ -92,7 +92,7 @@ export default class Welcome extends Component {
     render() {
         return(
             <div style={{textAlign: "center"}}>
-                <img src={logo} style={{maxWidth: "50%"}} />
+                <img src={logo} alt="logo" style={{maxWidth: "50%"}} />
                 <h1>Welcome!</h1>
                 <p>Enter the sign in code below:</p>
 
