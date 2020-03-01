@@ -29,7 +29,7 @@ function App() {
 	return (
 		<Router>
 			<Navbar />
-			<div id="main">
+			<div>
 				<div className="container-fluid">
 					<Route path="/" exact component={Entry} />
 					<Route path="/welcome" exact component={Welcome} />
