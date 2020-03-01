@@ -12,6 +12,7 @@ import CreateUser from './components/create-user.component';
 import UserAutosuggest from './components/user-auto-suggest.component';
 
 import Cookies from 'universal-cookie';
+import Footer from './components/footer.component.js';
 
 const cookies = new Cookies();
 // var is_root = location.pathname == "/";
@@ -39,6 +40,7 @@ function App() {
 					<Route path="/user" component={CreateUser} />
 					<Route path="/test" component={UserAutosuggest} />
 				</div>
+				<Footer />
 			</div>
 		</Router>
 	);
