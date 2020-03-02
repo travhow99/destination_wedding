@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const accommodationsSchema = new Schema({
+const accommodationSchema = new Schema({
     email: {
         type: String,
         trim: true,
@@ -29,6 +29,6 @@ const accommodationsSchema = new Schema({
     timestamps: true
 });
 
-const Accommodations = mongoose.model('Accommodations', accommodationsSchema);
+const Accommodation = mongoose.model('Accommodations', accommodationSchema);
 
-module.exports = Accommodations;
+module.exports = Accommodation;
