@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FaHotel } from 'react-icons/fa';
 
 export default class Card extends Component {
     constructor(props) {
@@ -7,11 +8,13 @@ export default class Card extends Component {
 
     render() {
         return (
-            <div className="card text-white bg-primary">
+            <div className="card text-dark bg-light" style={{border: 'none',}}>
                 <img className="card-img-top" src={this.props.image} alt="" />
                 <div className="card-body">
-                    <h4 className="card-title">Title</h4>
-                    <p className="card-text">Text</p>
+                    <h4 className="card-title">{this.props.title || "Your Dream Vacation"}</h4>
+                    <small>{this.props.sub || "Winter Park"}</small>
+                    <p className="card-text">{this.props.link}</p>
+                    <FaHotel />
                 </div>
         </div>
         )

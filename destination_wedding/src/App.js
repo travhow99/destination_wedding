@@ -10,9 +10,9 @@ import EditFlight from './components/edit-flight.component';
 import CreateFlight from './components/create-flight.component';
 import CreateUser from './components/create-user.component';
 import UserAutosuggest from './components/user-auto-suggest.component';
+import Footer from './components/footer.component.js';
 
 import Cookies from 'universal-cookie';
-import Footer from './components/footer.component.js';
 
 const cookies = new Cookies();
 // var is_root = location.pathname == "/";
@@ -30,18 +30,16 @@ function App() {
 	return (
 		<Router>
 			<Navbar />
-			<div>
-				<div className="container-fluid">
-					<Route path="/" exact component={Entry} />
-					<Route path="/welcome" exact component={Welcome} />
-					<Route path="/flights" component={FlightList} />
-					<Route path="/edit/:id" component={EditFlight} />
-					<Route path="/create" component={CreateFlight} />
-					<Route path="/user" component={CreateUser} />
-					<Route path="/test" component={UserAutosuggest} />
-				</div>
-				<Footer />
+			<div className="container-fluid" style={{paddingBottom: 60}}>
+				<Route path="/" exact component={Entry} />
+				<Route path="/welcome" exact component={Welcome} />
+				<Route path="/flights" component={FlightList} />
+				<Route path="/edit/:id" component={EditFlight} />
+				<Route path="/create" component={CreateFlight} />
+				<Route path="/user" component={CreateUser} />
+				<Route path="/test" component={UserAutosuggest} />
 			</div>
+			<Footer />
 		</Router>
 	);
 }

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 
 export default class Footer extends Component {
     render() {
-        return(
-            <div className="text-center bg-light">
-                @travhow2020
-            </div>
+        return (
+            <footer className="footer">
+                <div className="container text-center">
+                    <span className="text-muted">destinationwedding@2020</span>
+                </div>
+            </footer>
         )
     }
 }
