@@ -59,19 +59,31 @@ export default class Accommodations extends Component {
                         Whether you're seeking the freedom of an Airbnb, a secluded cabin, or a quiet hotel, we have plenty of options to stay nearby.
                     </p>
                 </div>
-                <div className="col-8">
+                <div className="col-md-8">
                     <div className="row">
                         {/* Allow for n hotels pulled from DB, scroll beyond screem */}
                         {
                             this.state.accommodations.map((hotel, index) => {
                                 console.log(hotel);
                                 return (
-                                    <div key={index} className="col">
-                                        <AccommodationCard image={hotel.image} title={hotel.name} sub={hotel.city} link={hotel.url} price={hotel.price_range} />
+                                    <div key={index} className="col-4">
+                                        <AccommodationCard 
+                                        image={hotel.image} 
+                                        title={hotel.name} 
+                                        sub={hotel.city} 
+                                        link={hotel.url} 
+                                        price={hotel.price_range}
+                                        distance={hotel.distance}
+                                        />
                                     </div>
                                 )
                             })
                         }
+                    </div>
+                </div>
+                <div className="col-12 bg-dark">
+                    <div className="col text-center mt-4 text-primary">
+                        <span>View Attendee Vacancies</span>
                     </div>
                 </div>
             </div>

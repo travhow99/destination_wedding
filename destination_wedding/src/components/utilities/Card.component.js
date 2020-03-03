@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { FaHotel } from 'react-icons/fa';
 
 export default class Card extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         console.log(this.props.image);
         return (

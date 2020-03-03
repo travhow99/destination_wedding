@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Card from './Card.component';
 import { FaHotel } from 'react-icons/fa';
+import { MdDriveEta } from 'react-icons/md';
 
 export default class AccommodationCard extends Card {
     constructor(props) {
@@ -16,10 +17,19 @@ export default class AccommodationCard extends Card {
                     <h4 className="card-title mb-0">{this.props.title || "Your Dream Vacation"}</h4>
                     <small>{this.props.sub || "Winter Park"}</small><br />
                     <a target="_blank" className="card-text" href={this.props.link}>{this.props.link}</a><br />
-                    <small className="text-primary">{this.props.price}</small><br />
-                    <FaHotel className='mt-3' /><br />
+                    <div className="row">
+                        <div className="col d-flex">
+                            <small className="text-primary">{this.props.price}</small> <small className="ml-auto">
+                                <MdDriveEta />
+                                {this.props.distance}
+                            </small>
+                        </div>
+                    </div>
                 </div>
-        </div>
+                {/* <div className="card-footer">
+                    <FaHotel />
+                </div> */}
+            </div>
         )
     }
 }

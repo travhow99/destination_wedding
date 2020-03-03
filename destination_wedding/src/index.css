@@ -120,6 +120,16 @@ code {
   background: #dfe2da;
 }
 
+#booking {
+  width: 90%;
+}
+
+@media (min-width: 720px) {
+  #booking {
+    min-width: 640px;
+  }
+}
+
 .footer {
   position: absolute;
   bottom: 0;

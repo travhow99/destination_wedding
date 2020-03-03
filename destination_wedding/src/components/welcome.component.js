@@ -110,7 +110,7 @@ export default class CreateUser extends Component {
                         backgroundSize: 'cover',
                     }}></div>
                     <div className="position-absolute justify-content-center align-items-center d-flex w-100" style={{height: 340}}>
-                        <div className="w-50 px-4 py-5 bg-light shadow-lg" style={{minWidth: 640}}>
+                        <div id="booking" className="w-50 px-4 py-5 bg-light shadow-lg">
                             <h3>Welcome back {this.state.first_name}!</h3>
                             <form className="form-inline">
                                 <label className="sr-only" htmlFor="inlineFormInputName2">Name</label>
