@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Card from './utilities/Card.component';
+import AccommodationCard from './utilities/AccommodationCard.component';
 import tetons from '../tetons.jpg';
+import axios from 'axios';
 
 export default class Accommodations extends Component {
     constructor(props) {
@@ -8,7 +9,7 @@ export default class Accommodations extends Component {
 
         this.state = {
             accommodations: [
-                {
+                /* {
                     title: 'Holiday Inn Express',
                     location: 'Fraser',
                     image: tetons,
@@ -22,10 +23,32 @@ export default class Accommodations extends Component {
                     title: 'Winter Park Lodge',
                     location: 'Winter Park',
                     image: tetons,
-                },
+                }, */
             ],
         }
     }
+
+    async componentDidMount() {
+        if (this.state.accommodations.length === 0) {
+            const response = await axios.get('http://localhost:5000/hotels/');
+            const hotels = response.data;
+            console.log(hotels);
+
+            const imageArray = [];
+
+            hotels.map((hotel) => {
+                // imageArray.push(require(`http://localhost:${hotel.image}`));
+            })
+
+
+
+            this.setState({
+                accommodations: hotels,
+            });
+
+            console.log(this.state);
+        }
+    }    
 
     render() {
         return(
@@ -41,9 +64,10 @@ export default class Accommodations extends Component {
                         {/* Allow for n hotels pulled from DB, scroll beyond screem */}
                         {
                             this.state.accommodations.map((hotel, index) => {
+                                console.log(hotel);
                                 return (
                                     <div key={index} className="col">
-                                        <Card image={hotel.image} title={hotel.title} sub={hotel.location} link=''/>
+                                        <AccommodationCard image={hotel.image} title={hotel.name} sub={hotel.city} link={hotel.url} price={hotel.price_range} />
                                     </div>
                                 )
                             })

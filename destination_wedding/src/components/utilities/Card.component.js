@@ -7,9 +7,10 @@ export default class Card extends Component {
     }
 
     render() {
+        console.log(this.props.image);
         return (
             <div className="card text-dark bg-light" style={{border: 'none',}}>
-                <img className="card-img-top" src={this.props.image} alt="" />
+                <img className="card-img-top" src={this.props.image ? require(`../../${this.props.image}`) : ''} alt="" />
                 <div className="card-body">
                     <h4 className="card-title">{this.props.title || "Your Dream Vacation"}</h4>
                     <small>{this.props.sub || "Winter Park"}</small>
