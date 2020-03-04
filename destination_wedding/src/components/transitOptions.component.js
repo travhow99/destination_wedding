@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import AccommodationCard from './utilities/AccommodationCard.component';
 import TransitCard from './utilities/TransitCard.component';
-import tetons from '../tetons.jpg';
+import { FaArrowCircleRight } from 'react-icons/fa';
 import axios from 'axios';
 
 export default class TransitOptions extends Component {
@@ -18,14 +17,6 @@ export default class TransitOptions extends Component {
             const response = await axios.get('http://localhost:5000/transitOptions/');
             const transitOptions = response.data;
             console.log(transitOptions);
-
-            const imageArray = [];
-
-            transitOptions.map((transitOption) => {
-                // imageArray.push(require(`http://localhost:${transitOption.image}`));
-            })
-
-
 
             this.setState({
                 transitOptions: transitOptions,
@@ -45,7 +36,7 @@ export default class TransitOptions extends Component {
                             this.state.transitOptions.map((transitOption, index) => {
                                 console.log(transitOption);
                                 return (
-                                    <div key={index} className="col-4">
+                                    <div key={index} className={index > 2 ? "col-4 covered" : "col-4"}>
                                         <TransitCard 
                                         image={transitOption.image} 
                                         title={transitOption.name} 
@@ -60,6 +51,7 @@ export default class TransitOptions extends Component {
                                 )
                             })
                         }
+                        <FaArrowCircleRight className="floating-scroll right" />
                     </div>
                 </div>
                 <div className="col d-flex justify-content-center flex-column">

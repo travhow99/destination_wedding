@@ -1,13 +1,8 @@
 import React from 'react';
 import Card from './Card.component';
-import { FaHotel } from 'react-icons/fa';
 import { MdDriveEta } from 'react-icons/md';
 
 export default class AccommodationCard extends Card {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         console.log(this.props.image);
         return (
@@ -16,7 +11,7 @@ export default class AccommodationCard extends Card {
                 <div className="card-body">
                     <h4 className="card-title mb-0">{this.props.title || "Your Dream Vacation"}</h4>
                     <small className="d-block pb-2">{this.props.sub || "Winter Park"}</small>
-                    <a target="_blank" className="card-text" href={this.props.link}>{this.props.link}</a><br />
+                    <a target="_blank" rel="noopener noreferrer" className="card-text" href={this.props.link}>{this.props.link}</a><br />
                     <div className="row">
                         <div className="col d-flex">
                             <small className="text-primary">{this.props.price}</small> <small className="ml-auto">

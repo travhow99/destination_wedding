@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import UserAutosuggest from './user-auto-suggest.component';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
-import logo from '../mountain.png';
 import About from './about.component';
 import Feature from './feature.component';
 import Accommodations from './accomodations.component';

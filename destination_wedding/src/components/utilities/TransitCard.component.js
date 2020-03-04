@@ -30,15 +30,16 @@ export default class TransitCard extends Card {
                         {this.props.from} 
                         <FaLongArrowAltRight className="mx-1" />
                         {this.props.to}
-                     </small>
+                    </small>
                     <div className="row">
                         <div className="col d-flex">
-                            <small className="text-white">Departs {this.props.times}</small> <small className="ml-auto">
+                            <small className="text-white">Departs {this.props.times}</small> 
+                            <small className="ml-auto">
                                 {this.findIcon(this.props.type)}
                             </small>
                         </div>
                     </div>
-                    <a target="_blank" className="stretched-link" href={this.props.link} />
+                    <a target="_blank" rel="noopener noreferrer"  className="stretched-link" href={this.props.link} />
                 </div>
                 {/* <div className="card-footer">
                     <FaHotel />

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import AccommodationCard from './utilities/AccommodationCard.component';
-import tetons from '../tetons.jpg';
 import axios from 'axios';
 
 export default class Accommodations extends Component {
@@ -17,14 +16,6 @@ export default class Accommodations extends Component {
             const response = await axios.get('http://localhost:5000/hotels/');
             const hotels = response.data;
             console.log(hotels);
-
-            const imageArray = [];
-
-            hotels.map((hotel) => {
-                // imageArray.push(require(`http://localhost:${hotel.image}`));
-            })
-
-
 
             this.setState({
                 accommodations: hotels,

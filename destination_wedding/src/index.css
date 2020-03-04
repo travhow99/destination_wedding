@@ -138,3 +138,20 @@ code {
   line-height: 60px; /* Vertically center the text there */
   background-color: #f5f5f5;
 }
+
+/* Transit Option Stylings */
+.floating-scroll {
+  position: absolute;
+  top: 50%;
+  font-size: 24px;
+  columns: #e2e2e2;
+  cursor: pointer;
+}
+
+.floating-scroll.left {
+  left: -5px;
+}
+
+.floating-scroll.right {
+  right: -5px;
+}
