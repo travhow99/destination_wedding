@@ -24,12 +24,14 @@ const usersRouter = require('./routes/users');
 const transitsRouter = require('./routes/transits');
 const accommodationRouter = require('./routes/accommodations');
 const hotelRouter = require('./routes/hotels');
+const transitOptionRouter = require('./routes/transitOptions');
 
 app.use('/flights', flightsRouter);
 app.use('/users', usersRouter);
 app.use('/transits', transitsRouter);
 app.use('/accommodations', accommodationRouter);
 app.use('/hotels', hotelRouter);
+app.use('/transitOptions', transitOptionRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

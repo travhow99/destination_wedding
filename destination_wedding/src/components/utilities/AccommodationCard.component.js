@@ -15,7 +15,7 @@ export default class AccommodationCard extends Card {
                 <img className="card-img-top" src={this.props.image ? require(`../../${this.props.image}`) : ''} alt="" />
                 <div className="card-body">
                     <h4 className="card-title mb-0">{this.props.title || "Your Dream Vacation"}</h4>
-                    <small>{this.props.sub || "Winter Park"}</small><br />
+                    <small className="d-block pb-2">{this.props.sub || "Winter Park"}</small>
                     <a target="_blank" className="card-text" href={this.props.link}>{this.props.link}</a><br />
                     <div className="row">
                         <div className="col d-flex">
