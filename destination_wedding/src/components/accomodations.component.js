@@ -8,23 +8,7 @@ export default class Accommodations extends Component {
         super(props);
 
         this.state = {
-            accommodations: [
-                /* {
-                    title: 'Holiday Inn Express',
-                    location: 'Fraser',
-                    image: tetons,
-                },
-                {
-                    title: 'Fraser Valley Inn',
-                    location: 'Fraser',
-                    image: tetons,
-                },
-                {
-                    title: 'Winter Park Lodge',
-                    location: 'Winter Park',
-                    image: tetons,
-                }, */
-            ],
+            accommodations: [],
         }
     }
 

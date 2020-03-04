@@ -6,6 +6,7 @@ import logo from '../mountain.png';
 import About from './about.component';
 import Feature from './feature.component';
 import Accommodations from './accomodations.component';
+import TransitOptions from './transitOptions.component';
 // import aspen from '../aspen.jpg';
 
 const cookies = new Cookies();
@@ -137,6 +138,7 @@ export default class CreateUser extends Component {
                 </div>
                 <About />
                 <Feature />
+                <TransitOptions />
                 <Accommodations />
             </div>
         )
