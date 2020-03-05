@@ -140,6 +140,12 @@ code {
 }
 
 /* Transit Option Stylings */
+@media (min-width: 980px) {
+  .feature-scroll {
+    width: 110%;
+    margin-left: -7%!important;
+  }
+}
 .floating-scroll {
   position: absolute;
   top: 50%;
@@ -149,9 +155,9 @@ code {
 }
 
 .floating-scroll.left {
-  left: -5px;
+  left: 5px;
 }
 
 .floating-scroll.right {
-  right: -5px;
+  right: 5px;
 }

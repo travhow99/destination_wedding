@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TransitCard from './utilities/TransitCard.component';
-import { FaArrowCircleRight } from 'react-icons/fa';
+import { FaArrowCircleLeft } from 'react-icons/fa';
 import axios from 'axios';
 
 export default class TransitOptions extends Component {
@@ -29,15 +29,15 @@ export default class TransitOptions extends Component {
     render() {
         return(
             <div className="row bg-light" style={{paddingTop: 160, paddingBottom: 160}}>
-                <div className="col-md-8">
-                    <div className="row">
+                <div className="col-md-9">
+                    <div className="row card-deck feature-scroll">
                         {/* Allow for n hotels pulled from DB, scroll beyond screem */}
                         {
                             this.state.transitOptions.map((transitOption, index) => {
                                 console.log(transitOption);
                                 return (
-                                    <div key={index} className={index > 2 ? "col-4 covered" : "col-4"}>
-                                        <TransitCard 
+                                    <TransitCard 
+                                        key={index}
                                         image={transitOption.image} 
                                         title={transitOption.name} 
                                         from={transitOption.from} 
@@ -46,12 +46,11 @@ export default class TransitOptions extends Component {
                                         price={transitOption.price_range}
                                         type={transitOption.type}
                                         times={transitOption.times}
-                                        />
-                                    </div>
+                                    />
                                 )
                             })
                         }
-                        <FaArrowCircleRight className="floating-scroll right" />
+                        <FaArrowCircleLeft className="floating-scroll left" />
                     </div>
                 </div>
                 <div className="col d-flex justify-content-center flex-column">
