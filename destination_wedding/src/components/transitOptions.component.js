@@ -30,7 +30,7 @@ export default class TransitOptions extends Component {
         return(
             <div className="row bg-light" style={{paddingTop: 160, paddingBottom: 160}}>
                 <div className="col-md-9">
-                    <div className="row card-deck feature-scroll">
+                    <div className="card-deck feature-scroll flex-row-reverse">
                         {/* Allow for n hotels pulled from DB, scroll beyond screem */}
                         {
                             this.state.transitOptions.map((transitOption, index) => {
