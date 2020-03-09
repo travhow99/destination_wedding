@@ -10,8 +10,6 @@ export default class TransitCard extends Card {
         this.state = {
             shifted: 0,
         }
-
-        this.onClick = this.onClick.bind(this);
     }
 
     findIcon(type) {
@@ -29,25 +27,15 @@ export default class TransitCard extends Card {
         }
     }
 
-    onClick() {
-        console.log('clicky');
-        this.setState({
-            shifted: this.state.shifted + 1,
-        });
-
-        console.log(this.state);
-    }
-
     render() {
-        console.log(this.props.image);
         return (
-            <div className={`card text-light bg-dark ${this.state.shifted >= 1 ? 'shift-left' : ''}`} style={{border: 'none',}}>
+            <div className={`card text-light bg-dark shift-left_${this.props.shift}`} style={{border: 'none',}}>
                 <img className="card-img-top" src={this.props.image ? require(`../../${this.props.image}`) : ''} alt="" />
                 <div className="card-body">
                     <h4 className="card-title mb-0">{this.props.title || "Your Dream Vacation"}</h4>
                     <small className="d-block pb-2">
                         {this.props.from} 
-                        <FaLongArrowAltRight onClick={this.onClick} className="mx-1" />
+                        <FaLongArrowAltRight className="mx-1" />
                         {this.props.to}
                     </small>
                     <div className="row">

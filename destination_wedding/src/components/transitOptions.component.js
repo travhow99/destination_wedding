@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TransitCard from './utilities/TransitCard.component';
-import { FaArrowCircleLeft } from 'react-icons/fa';
+import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
 import axios from 'axios';
 
 export default class TransitOptions extends Component {
@@ -9,7 +9,10 @@ export default class TransitOptions extends Component {
 
         this.state = {
             transitOptions: [],
+            shifted: 0,
         }
+
+        this.shift = this.shift.bind(this);
     }
 
     async componentDidMount() {
@@ -24,19 +27,29 @@ export default class TransitOptions extends Component {
 
             console.log(this.state);
         }
-    }    
+    }
+
+    shift = (direction) => {
+        console.log('clicky');
+        let shift = direction ===  'left' ?  this.state.shifted + 1 : this.state.shifted - 1;
+        
+        this.setState({
+            shifted: shift,
+        });
+
+        console.log(this.state);
+    }
 
     render() {
         return(
             <div className="row bg-light" style={{paddingTop: 160, paddingBottom: 160}}>
                 <div className="col-md-9">
                     <div className="card-deck feature-scroll flex-row-reverse">
-                        {/* Allow for n hotels pulled from DB, scroll beyond screem */}
                         {
                             this.state.transitOptions.map((transitOption, index) => {
-                                console.log(transitOption);
                                 return (
                                     <TransitCard 
+                                        shift={this.state.shifted}
                                         key={index}
                                         image={transitOption.image} 
                                         title={transitOption.name} 
@@ -50,7 +63,16 @@ export default class TransitOptions extends Component {
                                 )
                             })
                         }
-                        <FaArrowCircleLeft className="floating-scroll left" />
+                        {
+                            this.state.shifted < this.state.transitOptions.length - 2
+                            &&
+                            <FaArrowCircleLeft onClick={() => this.shift('left')} className="floating-scroll left" />
+                        }
+                        {
+                            this.state.shifted > 0
+                            &&
+                            <FaArrowCircleRight onClick={() => this.shift('right')} className="floating-scroll right" />
+                        }
                     </div>
                 </div>
                 <div className="col d-flex justify-content-center flex-column">
