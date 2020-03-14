@@ -139,14 +139,16 @@ code {
   background-color: #f5f5f5;
 }
 
-@for $i from 1 through 12 {
+@for $i from 0 through 12 {
   $translate: 270 * $i;
   
   .shift-right_#{$i} {
     transform: translateX(-#{$translate}px);
+    transition: all ease-in-out .3s;
   }
   .shift-left_#{$i} {
     transform: translateX(#{$translate}px);
+    transition: all ease-in-out .3s;
   }
 }
 
