@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AccommodationCard from './utilities/AccommodationCard.component';
+import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
 import axios from 'axios';
 
 export default class Accommodations extends Component {
@@ -8,7 +9,10 @@ export default class Accommodations extends Component {
 
         this.state = {
             accommodations: [],
+            shifted: 0,
         }
+
+        this.shift = this.shift.bind(this);
     }
 
     async componentDidMount() {
@@ -23,7 +27,18 @@ export default class Accommodations extends Component {
 
             console.log(this.state);
         }
-    }    
+    }
+
+    shift = (direction) => {
+        console.log('clicky');
+        let shift = direction ===  'right' ?  this.state.shifted + 1 : this.state.shifted - 1;
+        
+        this.setState({
+            shifted: shift,
+        });
+
+        console.log(this.state);
+    }
 
     render() {
         return(
@@ -34,26 +49,35 @@ export default class Accommodations extends Component {
                         Whether you're seeking the freedom of an Airbnb, a secluded cabin, or a quiet hotel, we have plenty of options to stay nearby.
                     </p>
                 </div>
-                <div className="col-md-8">
-                    <div className="row">
-                        {/* Allow for n hotels pulled from DB, scroll beyond screem */}
+                <div className="col-md-9">
+                    <div className="card-deck feature-scroll">
                         {
                             this.state.accommodations.map((hotel, index) => {
-                                console.log(hotel);
                                 return (
-                                    <div key={index} className="col-4">
-                                        <AccommodationCard 
+                                    <AccommodationCard 
+                                        shift={this.state.shifted}
+                                        key={index}
                                         image={hotel.image} 
                                         title={hotel.name} 
                                         sub={hotel.city} 
                                         link={hotel.url} 
                                         price={hotel.price_range}
                                         distance={hotel.distance}
-                                        />
-                                    </div>
+                                    />
                                 )
                             })
                         }
+                        {
+                            this.state.shifted > 0
+                            &&
+                            <FaArrowCircleLeft onClick={() => this.shift('left')} className="floating-scroll left" />
+                        }
+                        {
+                            this.state.shifted < this.state.accommodations.length - 2
+                            &&
+                            <FaArrowCircleRight onClick={() => this.shift('right')} className="floating-scroll right" />
+                        }
+
                     </div>
                 </div>
                 <div className="col-12 bg-dark">

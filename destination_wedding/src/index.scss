@@ -1,3 +1,5 @@
+$lightBlue: #57e8ff;
+
 body {
   min-height: 100%;
   margin: 0;
@@ -61,17 +63,6 @@ code {
 .react-autosuggest__container {
   position: relative;
 }
-
-/* .react-autosuggest__input {
-  width: 240px;
-  height: 30px;
-  padding: 10px 20px;
-  font-family: Helvetica, sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-} */
 
 .react-autosuggest__input--focused {
   outline: none;
@@ -140,13 +131,16 @@ code {
 }
 
 @for $i from 0 through 12 {
-  $translate: 270 * $i;
+  $width: 270;
+  $translate: $width * $i;
   
   .shift-right_#{$i} {
+    min-width: #{$width}px!important;
     transform: translateX(-#{$translate}px);
     transition: all ease-in-out .3s;
   }
   .shift-left_#{$i} {
+    min-width: #{$width}px!important;
     transform: translateX(#{$translate}px);
     transition: all ease-in-out .3s;
   }
@@ -155,23 +149,16 @@ code {
 /* Transit Option Stylings */
 @media (min-width: 980px) {
   .feature-scroll {
-    width: 150%;
-    margin-left: -50%!important;
     overflow: hidden;
+    flex-wrap: nowrap!important;
   }
-
-/*   .shift-right {
-    transform: translateX(270px);
-  }
-  .shift-left {
-    transform: translateX(-270px);
-  } */
 }
+
 .floating-scroll {
   position: absolute;
   top: 50%;
   font-size: 24px;
-  columns: #e2e2e2;
+  color: $lightBlue;
   cursor: pointer;
 }
 

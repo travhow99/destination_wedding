@@ -3,10 +3,17 @@ import Card from './Card.component';
 import { MdDriveEta } from 'react-icons/md';
 
 export default class AccommodationCard extends Card {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            shifted: 0,
+        }
+    }
     render() {
         console.log(this.props.image);
         return (
-            <div className="card text-dark bg-light" style={{border: 'none',}}>
+            <div className={`card text-dark bg-light shift-right_${this.props.shift}`} style={{border: 'none',}}>
                 <img className="card-img-top" src={this.props.image ? require(`../../${this.props.image}`) : ''} alt="" />
                 <div className="card-body">
                     <h4 className="card-title mb-0">{this.props.title || "Your Dream Vacation"}</h4>
