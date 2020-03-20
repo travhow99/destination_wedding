@@ -10,6 +10,23 @@ export default class Lodging extends Component {
 
         this.state = {
             accommodations: [],
+            coordinates: [
+                {
+                    name: 'Holiday Inn Express',
+                    lat: 39.988634,
+                    lng: -105.871688,
+                },
+                {
+                    name: 'Granby Ranch',
+                    lat: 39.988633,
+                    lng: -105.871688,
+                },
+                {
+                    name: 'Motel 6',
+                    lat: 39.9886325,
+                    lng: -105.871688,
+                },
+            ]
         }
     }
 
@@ -40,7 +57,7 @@ export default class Lodging extends Component {
                             {
                                 this.state.accommodations.map((hotel, index) => {
                                     return (
-                                        <div className="col-6 mt-4"
+                                        <div className="col-6 mb-4"
                                         key={index}
                                         >
                                             <AccommodationCard 
@@ -59,7 +76,9 @@ export default class Lodging extends Component {
                         </div>
                     </div>
                     <div className="col px-0">
-                        <AreaMap />
+                        <AreaMap 
+                            coordinates={this.state.coordinates}
+                        />
                     </div>
                 </div>
             </div>
