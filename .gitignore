@@ -33,3 +33,4 @@ chrome-user-data
 *.swo
 *.png
 *.jpg
+destination_wedding/.env

@@ -1,4 +1,5 @@
 $lightBlue: #57e8ff;
+$blueGray: #a1a9b1;
 
 body {
   min-height: 100%;
@@ -18,6 +19,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.blue {
+  color: $lightBlue;
+}
+
+.bg-gray {
+  background-color: $blueGray;
 }
 
 .navbar.bg-dark {
