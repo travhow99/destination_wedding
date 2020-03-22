@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import AccommodationCard from './utilities/AccommodationCard.component';
 
 import axios from 'axios';
@@ -13,18 +14,18 @@ export default class Lodging extends Component {
             coordinates: [
                 {
                     name: 'Holiday Inn Express',
-                    lat: 39.988634,
-                    lng: -105.871688,
+                    lat: 39.949015,
+                    lng: -105.814869,
                 },
                 {
                     name: 'Granby Ranch',
-                    lat: 39.988633,
-                    lng: -105.871688,
+                    lat: 40.049463,
+                    lng: -105.903166,
                 },
                 {
-                    name: 'Motel 6',
-                    lat: 39.9886325,
-                    lng: -105.871688,
+                    name: 'Hideaway Mountain Lodge',
+                    lat: 39.940339,
+                    lng: -105.863634,
                 },
             ]
         }
@@ -79,6 +80,11 @@ export default class Lodging extends Component {
                         <AreaMap 
                             coordinates={this.state.coordinates}
                         />
+                    </div>
+                </div>
+                <div className="row bg-gray">
+                    <div className="col text-center py-4">
+                            Have accommodations already? Add them <Link to="/my-lodging">here</Link>!
                     </div>
                 </div>
             </div>

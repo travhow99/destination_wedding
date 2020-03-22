@@ -35,6 +35,7 @@ router.route('/update/:id').post((req, res) => {
     Accommodation.findById(req.params.id)
         .then((accommodation) => {
             accommodation.type = req.body.type || accommodation.type;
+            accommodation.location = req.body.location || accommodation.location;
             accommodation.excess_beds = req.body.excess_beds || accommodation.excess_beds;
             accommodation.checkin_day = req.body.checkin_day || accommodation.checkin_day;
             accommodation.checkout_day = req.body.checkout_day || accommodation.checkout_day;

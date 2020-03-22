@@ -29,19 +29,12 @@ class AreaMap extends Component {
 
     static defaultProps = {
         key: process.env.REACT_APP_MAP_API,
-        /* center: {
-            lat: -105,
-            lng: 39,
-        }, */
         center: {lat: 39.988632, lng: -105.871688},
         zoom: 11,
     };
 
     render() {
-        console.log(this.props.key);
-
         let coordinates = this.props.coordinates; 
-        console.log(coordinates);
 
         return (
             <div style={{ height: '80vh', width: '100%' }}>
@@ -49,8 +42,6 @@ class AreaMap extends Component {
                     bootstrapURLKeys={{ key: this.props.key }}
                     defaultCenter={this.props.center}
                     defaultZoom={this.props.zoom}
-                    yesIWantToUseGoogleMapApiInternals
-                    // onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
                 >
                     {
                         coordinates.map((location, index) => {

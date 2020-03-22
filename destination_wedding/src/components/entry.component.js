@@ -101,7 +101,8 @@ export default class Welcome extends Component {
                         <div className="form-group">
                             <input 
                                 onChange={this.onChangeInput} 
-                                className="" />
+                                className="" 
+                            />
                         </div>
                         <div className="form-group">
                             <button type="submit" className="btn btn-primary">Submit</button>
@@ -115,7 +116,8 @@ export default class Welcome extends Component {
                             
                             <input 
                                 onChange={this.onChangeName} 
-                                className="" />
+                                className="" 
+                            />
                         </div>
                         <div className="form-group">
                             <button type="submit" className="btn btn-primary">Submit</button>

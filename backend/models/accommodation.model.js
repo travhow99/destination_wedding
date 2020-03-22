@@ -15,6 +15,11 @@ const accommodationSchema = new Schema({
         trim: true,
         required: true,
     },
+    location: {
+        type: String,
+        trim: true,
+        required: true,
+    },
     excess_beds: { type: Number, },
     checkin_day: {
         type: Date,
