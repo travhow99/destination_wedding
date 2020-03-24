@@ -28,7 +28,13 @@ export default class MyLodging extends Component {
                 endDate: null,
                 key: 'selection'
             },
+            display_calendar: false,
         }
+
+        this.onSubmit = this.onSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onCalendarFocus = this.onCalendarFocus.bind(this);
+        this.onCalendarBlur = this.onCalendarBlur.bind(this);
     }
 
     onSubmit(e) {
@@ -46,6 +52,22 @@ export default class MyLodging extends Component {
         });
 
         console.log(this.state);
+    }
+
+    onCalendarFocus() {
+        this.setState({
+            display_calendar: true,
+        })
+    }
+
+    onCalendarBlur(e) {
+        console.log(e.relatedTarget);
+        
+        if (!e.relatedTarget) {
+            this.setState({
+                display_calendar: false,
+            })
+        }
     }
 
     render() {
@@ -93,8 +115,17 @@ export default class MyLodging extends Component {
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <Calendar />
+                            <div className="form-group"
+                                tabIndex="4"
+                            >
+                                <input 
+                                    type="date"
+                                    name="date"
+                                    className="form-control"
+                                    onFocus={this.onCalendarFocus}
+                                    onBlur={this.onCalendarBlur}
+                                />
+                                {this.state.display_calendar && <Calendar />}                                
                             </div>
 
                         </form>

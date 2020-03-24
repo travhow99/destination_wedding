@@ -9,7 +9,7 @@ export default class Calendar extends Component {
             calendar: [
                 {
                     startDate: new Date(),
-                    endDate: null,
+                    endDate: new Date(),
                     key: 'selection',
                 }
             ],
@@ -18,7 +18,7 @@ export default class Calendar extends Component {
 
     render() {
         return <DateRange
-                    editableDateInputs={true}
+                    editableDateInputs={false}
                     onChange={(item) => this.setState({calendar: [item.selection]})}
                     moveRangeOnFirstSelection={false}
                     ranges={this.state.calendar}
