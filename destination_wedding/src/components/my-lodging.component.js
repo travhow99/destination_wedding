@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import Cookies from 'universal-cookie';
 import Calendar from './utilities/Calendar.component';
 
@@ -35,6 +36,8 @@ export default class MyLodging extends Component {
         this.onChange = this.onChange.bind(this);
         this.onCalendarFocus = this.onCalendarFocus.bind(this);
         this.onCalendarBlur = this.onCalendarBlur.bind(this);
+
+        this.calendarRef = React.createRef();
     }
 
     onSubmit(e) {
@@ -58,6 +61,18 @@ export default class MyLodging extends Component {
         this.setState({
             display_calendar: true,
         })
+
+        document.addEventListener('click', this.handleClickOutside, true);
+    }
+
+    handleClickOutside = (event) => {
+        const domNode = this.calendarRef.current; // ReactDOM.findDOMNode(this);
+
+        if (!domNode || !domNode.contains(event.target)) {
+            this.setState({
+                display_calendar: false,
+            })
+        }
     }
 
     onCalendarBlur(e) {
@@ -115,15 +130,12 @@ export default class MyLodging extends Component {
                                 />
                             </div>
 
-                            <div className="form-group"
-                                tabIndex="4"
-                            >
+                            <div ref={this.calendarRef} className="form-group">
                                 <input 
                                     type="date"
                                     name="date"
                                     className="form-control"
                                     onFocus={this.onCalendarFocus}
-                                    onBlur={this.onCalendarBlur}
                                 />
                                 {this.state.display_calendar && <Calendar />}                                
                             </div>

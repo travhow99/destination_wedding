@@ -16,8 +16,13 @@ export default class Calendar extends Component {
         }
     }
 
+    componentDidUpdate() {
+        console.log(this.state);
+    }
+
     render() {
         return <DateRange
+                    className="w-100"
                     editableDateInputs={false}
                     onChange={(item) => this.setState({calendar: [item.selection]})}
                     moveRangeOnFirstSelection={false}
